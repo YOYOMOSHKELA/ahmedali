@@ -19,7 +19,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === 'سلام عليكم') {
-    msg.reply('**وعليكم السلام ورحمة الله وبركاته**');
+    msg.reply('**وعليكمممم السلام ورحمة الله وبركاته**');
   }
 });
 
