@@ -49,7 +49,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === 'الرابط') {
-    msg.reply('https://discord.gg/N2Sx4sC');
+    msg.reply('https://discord.gg/8NXQs7h');
   }
 });
 
@@ -59,7 +59,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === '!') {
-              message.channel.send('**Welcome To Clan Royal Diamond :hotsprings: :crown: **');
+              message.channel.send('**#Welcome To Clan Total Power :tada:**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -71,11 +71,11 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'الشعار') {
-              message.channel.send('شعارك بل دسكورد   **! RD**');
+              message.channel.send('شعارك بل دسكورد   **! TP**');
 			  
 			  
 						
-			  message.channel.send('شعارك بل اللعبة   **๖ۣۜℛ𝕯|**');
+			  message.channel.send('شعارك بل اللعبة   **๖ۣۜ𝐓𝓟༻**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -1038,7 +1038,7 @@ client.on("message", message => {
 client.on("message", async message => {
     if(!message.channel.guild) return;
     var prefix = "";
-if(message.content.startsWith(prefix + 'دعوة')) {
+if(message.content.startsWith(prefix + 'دعوه')) {
 var nul = 0
 var guild = message.guild
 await guild.fetchInvites()
@@ -1357,7 +1357,7 @@ client.on('message', message => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', '-ROYAL ,'));
+member.addRole(member.guild.roles.find('name', '-TOTAL ,'));
 });
 
 
@@ -1619,7 +1619,7 @@ client.on("guildMemberAdd", (member) => {
             var Inv = Invite.code;
             if (dat[Inv])
                 if (dat[Inv] < Invite.uses) {
- channel.send(`تم دعوته بواسطة  ${Invite.inviter} `) ;         
+ channel.send(`Invited by  ${Invite.inviter} `) ;         
  }
             dat[Inv] = Invite.uses;
        
