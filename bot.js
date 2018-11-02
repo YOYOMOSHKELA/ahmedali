@@ -1348,7 +1348,7 @@ client.on('message', message => {
 	
 	
 	
-	client.on('ready', () => {
+client.on('ready', () => {
     console.log(`[Start] ${new Date()}`);
     console.log(`[INFO] ${client.user.username}`)
     console.log(`[INFO] ${client.users.size}`)
@@ -1359,6 +1359,7 @@ client.on('message', message => {
 client.on('guildMemberAdd', (member) => {
 member.addRole(member.guild.roles.find('name', '-TOTAL ,'));
 });
+
 
 
 
@@ -1590,7 +1591,7 @@ function forEachObject(obj, func) {
 client.on("ready", () => {
     var guild;
     while (!guild)
-        guild = client.guilds.get("483051179807342622");
+        guild = client.guilds.get("502883319852171284");
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
@@ -1602,7 +1603,7 @@ client.on("ready", () => {
 
 
 client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("505507183639789568");
+    let channel = member.guild.channels.get("502883319852171284");
     if (!channel) {
         console.log("!the channel id it's not correct");
         return;
@@ -1613,7 +1614,7 @@ client.on("guildMemberAdd", (member) => {
     console.log('-');
     var guild;
     while (!guild)
-        guild = client.guilds.get("483051179807342622");
+        guild = client.guilds.get("505689408771588106");
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
