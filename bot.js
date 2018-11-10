@@ -845,7 +845,7 @@ message.channel.sendEmbed(avatar)
 
 
 client.on('message',message =>{
-    var prefix = "$";
+    var prefix = "";
     if(message.content.startsWith(prefix + 'top')) {
   message.guild.fetchInvites().then(i =>{
   var invites = [];
@@ -1130,7 +1130,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    var prefix = "$";
+    var prefix = "";
     var args = message.content.substring(prefix.length).split(" ");
     if (message.content.startsWith(prefix + "user")) {
       message.guild.fetchInvites().then(invs => {
@@ -1603,7 +1603,7 @@ client.on("ready", () => {
 
 
 client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("502883319852171284");
+    let channel = member.guild.channels.get("505689408771588106");
     if (!channel) {
         console.log("!the channel id it's not correct");
         return;
@@ -1614,7 +1614,7 @@ client.on("guildMemberAdd", (member) => {
     console.log('-');
     var guild;
     while (!guild)
-        guild = client.guilds.get("505689408771588106");
+        guild = client.guilds.get("502883319852171284");
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
@@ -1627,33 +1627,6 @@ client.on("guildMemberAdd", (member) => {
        });
     });
 });
-
-
-
-
-
-
-client.on('message', function(message) {
-    if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-            let command = message.content.split(" ")[0];
-        if(message.content.includes('discord.gg')){
-        message.reply (' ')
-           if(!message.channel.guild) return message.reply('** This command only for servers**');
-     message.member.addRole(message.guild.roles.find('name', 'Muted'));
-    const embed500 = new Discord.RichEmbed()
-      .setTitle(":x: | تمت معاقبتك")
-            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
-      .addField(`by`,`ALPHACODES`)
-            .setColor("c91616")
-            .setThumbnail(`${message.author.avatarURL}`)
-            .setAuthor(message.author.username, message.author.avatarURL)
-        .setFooter(`${message.guild.name} Server`)
-     message.channel.send(embed500)
-   
-       
-    }
-    }
-})
 
 
 
@@ -1684,6 +1657,44 @@ client.on('message', function(message) {
     }
     }
 })
+
+
+
+
+
+const Discord = require('discord.js');
+const client = new Discord.Client();
+ 
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+ 
+client.on('message', message => {
+   
+    let args = message.content.split(' ').slice(1).join(' ');
+   
+  if (message.content === 'ping') {
+      message.channel.send(`<@${message.author.id}> Ping..!`)
+  }
+ 
+ 
+  if (message.content.startsWith('^bc')) {
+          if (!args[0]) {
+message.channel.send("**$bc <message>**");
+return;
+}
+message.guild.members.forEach(m => {
+   if(!message.member.hasPermission('ADMINISTRATOR')) return;
+   m.send(`${args}`);
+ 
+});
+  }
+ 
+});
+
+
+
+
 
 
 
