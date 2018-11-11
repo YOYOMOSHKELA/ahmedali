@@ -59,7 +59,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === '!') {
-              message.channel.send('**#Welcome To Clan Total Power :tada:**');
+              message.channel.send('**#Welcome To Clan Power Royal...:tada::tada:**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -71,11 +71,11 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'الشعار') {
-              message.channel.send('شعارك بل دسكورد   **! TP**');
+              message.channel.send('شعارك بل دسكورد   **! PR**');
 			  
 			  
 						
-			  message.channel.send('شعارك بل اللعبة   **๖ۣۜ𝐓𝓟༻**');
+			  message.channel.send('شعارك بل اللعبة   **♔ƤŘ**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -460,7 +460,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers `);
     console.log(`---------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`#TP For Ever`,"http://twitch.tv/y04zgamer")
+  client.user.setGame(`#PR For Ever`,"http://twitch.tv/y04zgamer")
    client.user.setStatus("dnd")
 });
 
@@ -1128,7 +1128,6 @@ client.on('message', message => {
     }
 });
 
-
 client.on('message', message => {
     var prefix = "";
     var args = message.content.substring(prefix.length).split(" ");
@@ -1357,7 +1356,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', '-TOTAL ,'));
+member.addRole(member.guild.roles.find('name', '-POWER ,'));
 });
 
 
