@@ -59,7 +59,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === '!') {
-              message.channel.send('**#Welcome To Clan Power Royal...:tada::tada:**');
+              message.channel.send('**#Welcome To Clan Criminal Hell...:tada::tada:**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -71,11 +71,11 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'الشعار') {
-              message.channel.send('شعارك بل دسكورد   **! PR**');
+              message.channel.send('شعارك بل دسكورد   **! CH**');
 			  
 			  
 						
-			  message.channel.send('شعارك بل اللعبة   **♔ƤŘ**');
+			  message.channel.send('شعارك بل اللعبة   **๖ۣۜ𝓒𝓗**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -460,7 +460,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers `);
     console.log(`---------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`#PR For Ever`,"http://twitch.tv/y04zgamer")
+  client.user.setGame(`#CH For Ever`,"http://twitch.tv/y04zgamer")
    client.user.setStatus("dnd")
 });
 
@@ -1256,7 +1256,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', '-POWER ,'));
+member.addRole(member.guild.roles.find('name', '♟ | CH'));
 });
 
 
@@ -1490,7 +1490,7 @@ function forEachObject(obj, func) {
 client.on("ready", () => {
     var guild;
     while (!guild)
-        guild = client.guilds.get("502883319852171284");
+        guild = client.guilds.get("502895675051081739");
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
@@ -1502,7 +1502,7 @@ client.on("ready", () => {
 
 
 client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("505689408771588106");
+    let channel = member.guild.channels.get("510206296604147722");
     if (!channel) {
         console.log("!the channel id it's not correct");
         return;
@@ -1513,7 +1513,7 @@ client.on("guildMemberAdd", (member) => {
     console.log('-');
     var guild;
     while (!guild)
-        guild = client.guilds.get("502883319852171284");
+        guild = client.guilds.get("502895675051081739");
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
@@ -1537,7 +1537,7 @@ client.on("guildMemberAdd", (member) => {
 
 client.on('message', function(message) {
     if (!message.member.hasPermissions(['ADMINISTRATOR'])){
-            let command = message.content.split("3")[3];
+            let command = message.content.split("1")[1];
         if(message.content.includes('discord.gg')){
         message.reply (' ')
            if(!message.channel.guild) return message.reply('** This command only for servers**');
@@ -1561,29 +1561,7 @@ client.on('message', function(message) {
 
 
 
- client.on('message', message => {
-   
-    let args = message.content.split(' ').slice(1).join(' ');
-   
-  if (message.content === 'ping') {
-      message.channel.send(`<@${message.author.id}> Ping..!`)
-  }
  
- 
-  if (message.content.startsWith('$bc')) {
-          if (!args[0]) {
-message.channel.send("**$bc <message>**");
-return;
-}
-message.guild.members.forEach(m => {
-   if(!message.member.hasPermission('ADMINISTRATOR')) return;
-   m.send(`${args}`);
- 
-});
-  }
- 
-});
-
 
 
 
