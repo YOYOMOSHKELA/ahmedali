@@ -139,35 +139,6 @@ client.on('message', message => {
 
 
 
-client.on('message', message => {
-   
-    let args = message.content.split(' ').slice(1).join(' ');
-   
-  if (message.content === 'ping') {
-      message.channel.send(`<@%{message.author.id}> Ping..!`)
-  }
- 
- 
-  if (message.content.startsWith('%bc')) {
-          if (!args[0]) {
-message.channel.send("**%bc <message>**");
-return;
-}
-message.guild.members.forEach(m => {
-   if(!message.member.hasPermission('ADMINISTRATOR')) return;
-   m.send(`%{args}`);
- 
-});
-  }
- 
-});
-
-
-
-
-
-
-
 
 
 
@@ -307,48 +278,6 @@ client.on('message', message => {
       .addField('عدد اعضاء السيرفر',`${message.guild.memberCount}`)
       message.channel.send(IzRo);
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const TOKEN = "";
-
-function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith('-' + str);
-}
-
-function pluck(array) {
-    return array.map(function(item) { return item["name"]; });
-}
-
-function hasRole(mem, role) {
-    if(pluck(mem.roles).includes(role)){
-        return true;
-    } else {
-        return false;
-    }
-
-  }
-  
-  
-  
-
 
 
 
@@ -509,49 +438,6 @@ client.on('message', message => {
       message.channel.sendEmbed(embed);
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-client.on('message', msg => {
-  if (msg.author.bot) return;
-  if (!msg.content.startsWith(prefix)) return;
-  let command = msg.content.split(" ")[0];
-  command = command.slice(prefix.length);
-
-  let args = msg.content.split(" ").slice(1);
-
-
-if (command == "غرد") {
-    let embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setAuthor(msg.author.username, msg.author.avatarURL)
-    .setDescription(args.join(" "))
-    .setFooter('© . :AG || Copyright')
-    msg.channel.sendEmbed(embed);
-    msg.delete();
-  }
-});
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1128,6 +1014,10 @@ client.on('message', message => {
     }
 });
 
+
+
+
+
 client.on('message', message => {
     var prefix = "";
     var args = message.content.substring(prefix.length).split(" ");
@@ -1256,7 +1146,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', '♟ | CH'));
+member.addRole(member.guild.roles.find('name', 'Criminal Hell'));
 });
 
 
