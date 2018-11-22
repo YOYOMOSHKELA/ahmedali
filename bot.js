@@ -71,7 +71,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'الشعار') {
-              message.channel.send('شعارك بل دسكورد   **! CH**');
+              message.channel.send('شعارك بل دسكورد   **! GH**');
 			  
 			  
 						
