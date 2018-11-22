@@ -49,7 +49,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === 'الرابط') {
-    msg.reply('https://discord.gg/8NXQs7h');
+    msg.reply('https://discord.gg/yFHwCcD');
   }
 });
 
@@ -59,7 +59,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === '!') {
-              message.channel.send('**#Welcome To Clan Criminal Hell...:tada::tada:**');
+              message.channel.send('**#Welcome To Clan Gang Hell...:tada::tada:**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -75,7 +75,7 @@ client.on('ready', () => {
 			  
 			  
 						
-			  message.channel.send('شعارك بل اللعبة   **๖ۣۜ𝓒𝓗**');
+			  message.channel.send('شعارك بل اللعبة   **๖ۣۜ𝕲𝓗**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -389,7 +389,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers `);
     console.log(`---------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`#CH For Ever`,"http://twitch.tv/y04zgamer")
+  client.user.setGame(`#GH For Ever`,"http://twitch.tv/y04zgamer")
    client.user.setStatus("dnd")
 });
 
@@ -1146,7 +1146,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', 'Criminal Hell'));
+member.addRole(member.guild.roles.find('name', 'Gang Hell'));
 });
 
 
@@ -1391,30 +1391,29 @@ client.on("ready", () => {
 
 
 
-client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("510206296604147722");
-    if (!channel) {
-        console.log("!the channel id it's not correct");
-        return;
-    }
-    if (member.id == client.user.id) {
-        return;
-    }
-    console.log('-');
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("502895675051081739");
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
- channel.send(`Invited by  ${Invite.inviter} `) ;         
- }
-            dat[Inv] = Invite.uses;
-       
-       });
+const invites = {};
+
+const wait = require('util').promisify(setTimeout);
+
+client.on('ready', () => {
+  wait(1000);
+
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
     });
+  });
+});
+
+client.on('guildMemberAdd', member => {
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    invites[member.guild.id] = guildInvites;
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const logChannel = member.guild.channels.find(channel => channel.name === "gang");
+    logChannel.send(`${member} Invited by: <@${inviter.id}>`);
+  });
 });
 
 
@@ -1473,107 +1472,24 @@ client.on("guildMemberAdd", member => {
 
 
 
-  const fs = require('fs'); // npm i fs
-const ms = require('ms'); // npm i ms
-const cool = [];
-client.on('message',async message => {
-  if(message.author.bot) return;
-  if(message.channel.type === 'dm') return;
- 
-  const args = message.content.split(' ');
-  const credits = require('./credits.json');
-  const path = './credits.json';
-  const mention = message.mentions.users.first() || client.users.get(args[1]) || message.author;
-  const mentionn = message.mentions.users.first() || client.users.get(args[1]);
-  const author = message.author.id;
-  const balance = args[2];
-  const daily = Math.floor(Math.random() * 350) + 10;
- 
-  if(!credits[author]) credits[author] = {credits: 50};
-  if(!credits[mention.id]) credits[mention.id] = {credits: 50};
-  fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
- 
- 
-  if(message.content.startsWith(prefix + "credit")) {
-  if(args[0] !== `${prefix}credit` && args[0] !== `${prefix}credits`) return;
- 
-  if(args[2]) {
-    if(isNaN(args[2])) return message.channel.send('**:heavy_multiplication_x:| هذه الخانة يجب ان تتكون من ارقام وليس احرف.**');
-    if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
-    if(mention.id === message.author.id) return message.channel.send('**:heavy_multiplication_x:| لا يمكنك تحويل كردت لنفسك**');
-    if(credits[author].credits < balance) return message.channel.send('**:heavy_multiplication_x:| أنت لا تملك هذا القدر من الكردت**');
-    var one = Math.floor(Math.random() * 9) + 1;
-    var two = Math.floor(Math.random() * 9) + 1;
-    var three = Math.floor(Math.random() * 9) + 1;
-    var four = Math.floor(Math.random() * 9) + 1;
- 
-    var number = `${one}${two}${three}${four}`;
-   
-    message.channel.send(`**:heavy_dollar_sign:| \`${number}\`, أكتب الرقم للأستمرار**`).then(m => {
-      message.channel.awaitMessages(m => m.author.id === message.author.id, {max: 1, time: 10000}).then(c => {
-        if(c.first().content === number) {
-          m.delete();
-          message.channel.send(`**:atm:| ${message.author.username}, قام بتحويل \`${balance}\` لـ ${mention}**`);
-          credits[author].credits += (-balance);
-          credits[mention.id].credits += (+balance);
-          fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
-        } else if(c.first().content !== number) {
-          m.delete();
-          message.channel.send(`** :money_with_wings: | تم الغاء الإرسال**`);
-        }
-      });
-    });
-  }
-  if(!args[2]) {
-    if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
-    message.channel.send(`**${mention.username}, your :credit_card: balance is **${credits[mention.id].credits}`);
-  }
- 
-  }
-  if(message.content.startsWith(prefix + "daily")) {
-    if(cool.includes(message.author.id)) return message.channel.send(`**:heavy_dollar_sign: | \ , يجب عليك انتظار  يوم لأخذ المبلغ مرة اخرى**`);
-    if(mentionn) {
-      var one = Math.floor(Math.random() * 9) + 1;
-      var two = Math.floor(Math.random() * 9) + 1;
-      var three = Math.floor(Math.random() * 9) + 1;
-      var four = Math.floor(Math.random() * 9) + 1;
- 
-      var number = `${one}${two}${three}${four}`;
- 
-      message.channel.send(`**:atm: | \`${number}\`, قم بكتابة الرقم للأستمرار**`).then(async m => {
-        message.channel.awaitMessages(msg => msg.author.id === message.author.id, {max: 1, time: 20000, errors: ['time']}).then(collected => {
-          if(collected.first().content === number) {
-            m.delete();
-            collected.first().delete();
-            credits[mentionn.id].credits += (+daily);
-            fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
- 
-          message.channel.send(`**:atm: | \`${daily}\`, تم تسليم المبلغ**`);  
-          }
-          if(collected.first().content !== number) {
-            return m.delete();
-          }
-        });
-      });
-    } else if(!mentionn) {
-      credits[author].credits += (+daily);
-      fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
- 
-      message.channel.send(`**:atm: | \`${daily}\`, تم اعطائك المبلغ**`);
-    }
-    cool.unshift(message.author.id);
- 
-    setTimeout(() => {
-      cool.shift(message.author.id);
-      message.author.send("**:atm: | \`Daily\`, يمكنك الحصول على الكردت المجانية الان**").catch();
-    }, ms("1d"));
-  }
+
+
+
+var prefix = "%";
+
+client.on("message", message => {
+
+            if (message.content.startsWith(prefix + "bc")) {
+                         if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' '); 
+  message.guild.members.filter(m => m.presence.status !== 'offline').forEach(m => {
+ m.send(`${argresult}\n ${m}`);
+})
+ message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'online').size}\` : عدد الاعضاء المستلمين`); 
+ message.delete(); 
+};     
 });
-
-
-
-
-
 
 
 
