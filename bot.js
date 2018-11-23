@@ -145,24 +145,6 @@ client.on('message', function(message) {
 
 
 
-var dat = JSON.parse("{}");
-function forEachObject(obj, func) {
-    Object.keys(obj).forEach(function (key) { func(key, obj[key]) });
-}
-client.on("ready", () => {
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("502895675051081739");
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            dat[Inv] = Invite.uses;
-        });
-    });
-});
-
-
-
 const invites = {};
 
 const wait = require('util').promisify(setTimeout);
@@ -187,7 +169,6 @@ client.on('guildMemberAdd', member => {
     logChannel.send(`${member} Invited by: <@${inviter.id}>`);
   });
 });
-
 
 
 
@@ -385,6 +366,312 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
   }
  
 });
+
+
+
+
+client.on('ready', () => {
+    console.log(`[Start] ${new Date()}`);
+    console.log(`[INFO] ${client.user.username}`)
+    console.log(`[INFO] ${client.users.size}`)
+    console.log(`[INFO] ${client.guilds.size}`)
+    console.log(`[BOT] Auto Role `)
+});
+
+client.on('guildMemberAdd', (member) => {
+member.addRole(member.guild.roles.find('name', 'Gang Hell'));
+});
+
+
+
+
+
+client.on('message', message => {
+    var prefix = "";
+    var args = message.content.substring(prefix.length).split(" ");
+    if (message.content.startsWith(prefix + "user")) {
+      message.guild.fetchInvites().then(invs => {
+        let member = client.guilds.get(message.guild.id).members.get(message.author.id);
+        let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
+        let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+            var embed = new Discord.RichEmbed()
+    .setColor(0x00A2E8)
+    .setThumbnail(message.author.avatarURL)
+    .addField("اسمك في السيرفر ", `${message.author.tag} (ID: ${message.author.id})`, true)
+    .addField("حالتك :", message.member.presence !== null && message.member.presence.status !== null ? message.member.presence.status : "Offline")
+    .addField("يلعب؟ : ", `${message.author.presence.game === null ? "None" :  message.author.presence.game.name}`, true)
+    .addField("اسمك في دسكورد ", `${message.member.displayName}`, true)
+    .addField("الرتب الذي تمتلكها ", `${message.member.roles.map(r => r.name).join(", ")}`)
+    .addField("أعلى رتبه تمتلكها: ", message.member.highestRole.name)
+    .addField("دخولك للدسكورد :", `${message.member.joinedAt.toDateString()}`)
+    .addField("دخولك للسيرفر : ", `${message.author.createdAt.toDateString()}`)
+    .addField(': عدد الدعوات',                         inviteCount,false)
+    .setTimestamp()
+    .setFooter(message.author.username, message.author.avatarURL);
+  if (message.mentions.users.size < 1) return message.channel.send({ embed: embed });
+    
+  var embed = new Discord.RichEmbed()
+    .setColor(0x00A2E8)
+    .setThumbnail(member.user.avatarURL)
+    .addField("اسمه في دسكورد:", `${member.user.tag} (ID: ${member.id})`, true)
+    .addField("حالته :", member.presence !== null && member.presence.status !== null ? member.presence.status : "Offline")
+    .addField("يلعب :", `${member.user.presence.game === null ? "Nothing" :  member.user.presence.game.name}`, true)
+    .addField("اسمه في السيرفر:", `${member.nickname === null ? "None" : member.nickname}`, true)
+    .addField("الرتب :", `${member.roles.map(r => r.name).join(", ")}`)
+    .addField("اعلى رتبه يمتلكها : :", member.highestRole.name)
+    .addField("دخوله لدسكورد :", `${member.joinedAt.toDateString()}`)
+    .addField("دخوله للسيرفر", `${member.user.createdAt.toDateString()}`)
+    .setTimestamp()
+    .setFooter(member.user.username, member.user.avatarURL);
+    message.channel.send({ embed: embed });
+      })
+    }
+          
+  });
+
+
+
+
+ client.on('message', message => {
+    var prefix = "";
+  if (message.author.x5bz) return;
+  if (!message.content.startsWith(prefix)) return;
+ 
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+ 
+  let args = message.content.split(" ").slice(1);
+ 
+  if (command == "باند") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  /*let b5bzlog = client.channels.find("name", "5bz-log");
+ 
+  if(!b5bzlog) return message.reply("I've detected that this server doesn't have a 5bz-log text channel.");*/
+  if (message.mentions.users.size < 1) return message.channel.send(`https://cdn.pg.sa/fjxlms81nk.png`);
+  if(!reason) return message.channel.send(`https://cdn.pg.sa/fjxlms81nk.png`);
+  if (!message.guild.member(user)
+  .bannable) return message.reply(`This User Is Have High Role !`);
+ 
+  message.guild.member(user).ban(7, user);
+ 
+  const banembed = new Discord.RichEmbed()
+  .setAuthor(`BANNED!`, user.displayAvatarURL)
+  .setColor("RANDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  message.channel.send({
+    embed : banembed
+  })
+}
+});
+
+
+
+
+ client.on('message', message => {
+  if (message.author.x5bz) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "كيك") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+  if(!reason) return message.reply ("**اكتب سبب الطرد**");
+  if (!message.guild.member(user)
+  .kickable) return message.reply("**لايمكنني طرد شخص اعلى من رتبتي يرجه اعطاء البوت رتبه عالي**");
+
+  message.guild.member(user).kick();
+
+  const kickembed = new Discord.RichEmbed()
+  .setAuthor(`KICKED!`, user.displayAvatarURL)
+  .setColor("RANDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  message.channel.send({
+    embed : kickembed
+  })
+}
+});
+
+
+
+var prefix = "";
+client.on('message', msg => {
+  if (msg.author.bot) return;
+  if (!msg.content.startsWith(prefix)) return;
+  let command = msg.content.split(" ")[0];
+  command = command.slice(prefix.length);
+  let args = msg.content.split(" ").slice(1);
+
+    if(command === "مسح") {
+        const emoji = client.emojis.find("name", "wastebasket")
+    let textxt = args.slice(0).join("");
+    if(msg.member.hasPermission("MANAGE_MESSAGES")) {
+    if (textxt == "") {
+        msg.delete().then
+    msg.channel.send("***```ضع عدد الرسائل التي تريد مسحها 👌```***").then(m => m.delete(3000));
+} else {
+    msg.delete().then
+    msg.delete().then
+    msg.channel.bulkDelete(textxt);
+        msg.channel.send("```php\nعدد الرسائل التي تم مسحها: " + textxt + "\n```").then(m => m.delete(3000));
+        }    
+    }
+}
+});
+
+
+
+
+client.on('message',message =>{
+    var prefix = "";
+    if(message.content.startsWith(prefix + 'top')) {
+  message.guild.fetchInvites().then(i =>{
+  var invites = [];
+   
+  i.forEach(inv =>{
+    var [invs,i]=[{},null];
+     
+    if(inv.maxUses){
+        invs[inv.code] =+ inv.uses+"/"+inv.maxUses;
+    }else{
+        invs[inv.code] =+ inv.uses;
+    }
+        invites.push(`invite: ${inv.url} inviter: ${inv.inviter} \`${invs[inv.code]}\`;`);
+   
+  });
+  var embed = new Discord.RichEmbed()
+  .setColor("#000000")
+  .setDescription(`${invites.join(`\n`)+'\n\n**By:** '+message.author}`)
+  .setThumbnail("https://media.discordapp.net/attachments/477570106755383307/479229377037598720/22713057_151850495552450_709700562_o.jpg?width=201&height=201")
+           message.channel.send({ embed: embed });
+   
+  });
+   
+    }
+  });
+  
+
+
+ var prefix = "-";
+    client.on('message', message => {
+    if(message.content.startsWith(prefix + 'صوره')) {
+         var men = message.mentions.users.first();
+      var heg;
+      if(men) {
+          heg = men
+      } else {
+          heg = message.author
+      }
+  var avatar = new Discord.RichEmbed()
+.setColor('RANDOM')
+.setTitle(heg.username)
+.setImage(heg.avatarURL)
+
+message.channel.sendEmbed(avatar)
+    }
+});
+
+
+
+
+var prefix = "-";
+client.on('message', message => {
+    if(message.content == prefix + 'سيرفر') {
+        var servername = message.guild.name
+        var اونر = message.guild.owner
+        var اعضاء = message.guild.memberCount
+        var ايدي = message.guild.id
+        var بلدالسيرفر = message.guild.region
+        var الرومات = message.guild.channels.size
+        var الرتب = message.guild.roles
+        var عمل = message.guild.createdAt
+        var الروم = message.guild.defaultChannel
+        var server = new Discord.RichEmbed()
+        .setThumbnail(message.guild.iconURL)
+        .addField('اسم السيرفر', servername)
+        .addField('اي دي السيرفر ' , [ايدي])
+        .addField('أعضاء السيرفر', اعضاء)
+        .addField('رومات السيرفر', الرومات)
+        .addField('روم الشات الأساسي', الروم)
+        .addField('صاحب السيرفر', اونر)
+        .addField('بلد السيرفر', بلدالسيرفر)
+        .addField('تاريخ افتتاح السيرفر', عمل)
+        .setColor('RANDOM')
+
+        message.channel.sendEmbed(server)
+    }
+});
+
+
+
+client.on('message', message => {
+   if (message.content === "id") {
+   let embed = new Discord.RichEmbed()
+  .setColor("RANDOM")
+  .setThumbnail(message.author.avatarURL)
+  .addField("Name:",`${message.author.username}`, true)
+  .addField('Discrim:',"#" +  message.author.discriminator, true)
+  .addField("ID:", message.author.id, true)
+  .addField("Create At:", message.author.createdAt, true)
+     
+     
+  message.channel.sendEmbed(embed);
+    }
+});
+
+
+var prefix = "";
+
+client.on('message', message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+// -say
+  if (command === "say") {
+          message.delete()
+    message.channel.sendMessage(args.join(" ")).catch(console.error);
+  }
+  
+ 
+
+if (command == "embed") {
+    let say = new Discord.RichEmbed()
+    .setDescription(args.join("  "))
+    .setColor(0x23b2d6)
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
+
+
+});
+
+
+
+
 
 
 
