@@ -1027,14 +1027,6 @@ client.on("ready", () => {
 
 
     
- client.on('guildMemberAdd', (member) => {
-let channel = client.channels.get('514210831773335553')
-if(member.user.bot) {
-channel.send(`**#Welcome To Clan Gang Hell...:tada::tada:**`)
-}
-})
-
-
 
 
 
