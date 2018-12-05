@@ -90,22 +90,6 @@ client.on('ready', () => {
 
 
 
-
-
-
-client.on("guildMemberAdd", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(`:rose:  ولكم نورت السيرفر:rose: 
-:crown:اسم العضو  ${member}:crown:  
-انت العضو رقم ${member.guild.memberCount} `) 
-}).catch(console.error)
-})
-
-
-
-
-
-
 client.on('message', function(message) {
     if (!message.member.hasPermissions(['ADMINISTRATOR'])){
             let command = message.content.split("2")[1];
@@ -1003,6 +987,7 @@ client.on("ready", () => {
 
 
     
+const fs = require('fs')
 
 const welcome = JSON.parse(fs.readFileSync('./welcomer.json' , 'utf8'));
  
@@ -1010,7 +995,7 @@ client.on('message', message => {
            if (!message.channel.guild) return;
  
     let room = message.content.split(" ").slice(1);
-    let findroom = message.guild.channels.find('gang', `${room}`)
+    let findroom = message.guild.channels.find('welcome', `${room}`)
     if(message.content.startsWith(prefix + "setWelcomer")) {
         if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
@@ -1211,8 +1196,17 @@ client.on('guildMemberAdd', member => {
   });
 });
  
-
-
+client.on("guildMemberAdd", member => {
+                    if(!welcome[member.guild.id]) welcome[member.guild.id] = {
+                  dm: 'Off'
+                }
+        if(welcome[member.guild.id].dm === 'Off') return;
+  member.createDM().then(function (channel) {
+  return channel.send(`:rose:  ولكم نورت السيرفر:rose:
+:crown:اسم العضو  ${member}:crown:  
+انت العضو رقم ${member.guild.memberCount} `)
+}).catch(console.error)
+})
 
 
 
