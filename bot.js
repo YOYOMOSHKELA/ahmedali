@@ -986,54 +986,41 @@ client.on("ready", () => {
 
 
 
-    
-
- 
   const invites = {};
- 
+
 const wait = require('util').promisify(setTimeout);
- 
+
 client.on('ready', () => {
   wait(1000);
- 
+
   client.guilds.forEach(g => {
     g.fetchInvites().then(guildInvites => {
       invites[g.id] = guildInvites;
     });
   });
 });
- 
+
 client.on('guildMemberAdd', member => {
-                    if(!welcome[member.guild.id]) welcome[member.guild.id] = {
-                  by: 'Off'
-                }
-    if(welcome[member.guild.id].by === 'Off') return;
   member.guild.fetchInvites().then(guildInvites => {
     const ei = invites[member.guild.id];
     invites[member.guild.id] = guildInvites;
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === `${welcome[member.guild.id].channel}`);
-    if(!logChannel) return;
-      setTimeout(() => {
-    logChannel.send(`Invited By: <@${inviter.id}>`);
-  },2000)
+    const logChannel = member.guild.channels.find(channel => channel.name === "gang");
+    logChannel.send(`${member} Invited by: <@${inviter.id}>`);
   });
 });
- 
+
+
+
+
 client.on("guildMemberAdd", member => {
-                    if(!welcome[member.guild.id]) welcome[member.guild.id] = {
-                  dm: 'Off'
-                }
-        if(welcome[member.guild.id].dm === 'Off') return;
   member.createDM().then(function (channel) {
-  return channel.send(`:rose:  ولكم نورت السيرفر:rose:
+  return channel.send(`:rose:  ولكم نورت السيرفر:rose: 
 :crown:اسم العضو  ${member}:crown:  
-انت العضو رقم ${member.guild.memberCount} `)
+انت العضو رقم ${member.guild.memberCount} `) 
 }).catch(console.error)
 })
-
-
 
 
 
