@@ -987,7 +987,7 @@ client.on("ready", () => {
 
 
     
-const fs = require('fs')
+"fs": "0.0.2",
 
 const welcome = JSON.parse(fs.readFileSync('./welcomer.json' , 'utf8'));
  
