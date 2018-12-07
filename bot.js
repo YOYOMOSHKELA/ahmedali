@@ -976,17 +976,6 @@ client.on('message', message => {
 
 
 
-client.on("ready", () => {
-  function lol() {
-    client.guilds.get('484774720827293697').roles.find("name", "Random").setColor("RANDOM");
-  };
-  setInterval(lol, 1600);
-});
-
-
-
-
-
 
 
 
