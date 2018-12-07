@@ -1031,20 +1031,31 @@ client.on("guildMemberAdd", member => {
 
 
 
-var prefix = "$";
-
-client.on("message", message => {
-
-            if (message.content.startsWith(prefix + "obc")) {
-                         if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-  let args = message.content.split(" ").slice(1);
-  var argresult = args.join(' '); 
-  message.guild.members.filter(m => m.presence.status !== 'offline').forEach(m => {
- m.send(`${argresult}\n ${m}`);
-})
- message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'online').size}\` : عدد الاعضاء المستلمين`); 
- message.delete(); 
-};     
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+ 
+client.on('message', message => {
+   
+    let args = message.content.split(' ').slice(1).join(' ');
+   
+  if (message.content === 'ping') {
+      message.channel.send(`<@${message.author.id}> Ping..!`)
+  }
+ 
+ 
+  if (message.content.startsWith('$bc')) {
+          if (!args[0]) {
+message.channel.send("**$bc <message>**");
+return;
+}
+message.guild.members.forEach(m => {
+   if(!message.member.hasPermission('ADMINISTRATOR')) return;
+   m.send(`${args}`);
+ 
+});
+  }
+ 
 });
 
 
