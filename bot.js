@@ -1032,9 +1032,7 @@ client.on("guildMemberAdd", member => {
 
 
 
-const prefix = "$";
 
-// ========================================== [ CONSTRUCTERS ] =========================================
 
 client.on("ready", async() => {
     client.user.setGame("Loading...");
