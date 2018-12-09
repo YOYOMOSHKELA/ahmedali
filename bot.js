@@ -325,7 +325,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', 'ARAB'));
+member.addRole(member.guild.roles.find('name', 'Arab .'));
 });
 
 
