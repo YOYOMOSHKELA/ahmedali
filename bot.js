@@ -59,7 +59,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === '!') {
-              message.channel.send('**#Welcome To Clan Gang Hell...:tada::tada:**');
+              message.channel.send('**#Welcome To Arab sultans Hell...:tada::tada:**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -71,11 +71,11 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'الشعار') {
-              message.channel.send('شعارك بل دسكورد   **! GH**');
+              message.channel.send('شعارك بل دسكورد   **! AS**');
 			  
 			  
 						
-			  message.channel.send('شعارك بل اللعبة   **๖ۣۜ𝕲𝓗**');
+			  message.channel.send('شعارك بل اللعبة   **๖ۣۜ𝓐𝓼**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -325,7 +325,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', 'Gang Hell'));
+member.addRole(member.guild.roles.find('name', 'ARAB'));
 });
 
 
@@ -764,7 +764,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers `);
     console.log(`---------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`#GH For Ever`,"http://twitch.tv/y04zgamer")
+  client.user.setGame(`AS For Ever`,"http://twitch.tv/y04zgamer")
    client.user.setStatus("dnd")
 });
 
