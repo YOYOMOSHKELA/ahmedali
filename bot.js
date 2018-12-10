@@ -325,7 +325,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', 'Arab .'));
+member.addRole(member.guild.roles.find('name', 'Arab'));
 });
 
 
@@ -999,7 +999,7 @@ client.on('guildMemberAdd', member => {
     invites[member.guild.id] = guildInvites;
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === "gang");
+    const logChannel = member.guild.channels.find(channel => channel.name === "arab");
     logChannel.send(`${member} Invited by: <@${inviter.id}>`);
   });
 });
