@@ -75,7 +75,7 @@ client.on('ready', () => {
 			  
 			  
 						
-			  message.channel.send('! LD | Name : أسمك في الديسكورد  ```**');
+			  message.channel.send('**! LD | Name : أسمك في الديسكورد  ```**');
               message.channel.sendFile("./photoshop.PNG");
                
 
