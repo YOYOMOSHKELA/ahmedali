@@ -71,7 +71,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'الشعار') {
-              message.channel.send('**ᴸᴰ』Name ! : أسمك في اللعبة**');
+              message.channel.send('**ᴸᴰ』Name : أسمك في اللعبة**');
 			  
 			  
 						
