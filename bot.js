@@ -533,8 +533,18 @@ client.on('message', message => {
     message.channel.sendMessage(args.join(" ")).catch(console.error);
   }
   
+ 
+
+if (command == "embed") {
+    let say = new Discord.RichEmbed()
+    .setDescription(args.join("  "))
+    .setColor(0x23b2d6)
+    message.channel.sendEmbed(say);
+    message.delete();
+  }
 
 
+});
 
 
 
