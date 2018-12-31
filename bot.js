@@ -58,7 +58,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
          client.on('message', message => {
-            if (message.content === '!') {
+            if (message.content === 'ترحيب') {
               message.channel.send('**#Welcome To Legends Dead...:tada::tada:**');
               message.channel.sendFile("./photoshop.PNG");
                
