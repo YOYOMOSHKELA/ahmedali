@@ -59,7 +59,7 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === '-') {
-              message.channel.send('**#Welcome To Legends Dead...:tada::tada:**');
+              message.channel.send('**#Welcome To Legends City...:tada::tada:**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -71,11 +71,11 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === 'الشعار') {
-              message.channel.send('**ᴸᴰ』Name : أسمك في اللعبة**');
+              message.channel.send('**العبه ! ᴸᶜ**');
 			  
 			  
 						
-			  message.channel.send('**! LD | Name : أسمك في الديسكور**');
+			  message.channel.send('**الديسكورد LC**');
               message.channel.sendFile("./photoshop.PNG");
                
 
@@ -575,7 +575,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers `);
     console.log(`---------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`LD For Ever`,"http://twitch.tv/y04zgamer")
+  client.user.setGame(`LC For Ever`,"http://twitch.tv/y04zgamer")
    client.user.setStatus("dnd")
 });
 
