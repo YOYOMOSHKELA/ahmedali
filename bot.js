@@ -49,7 +49,7 @@ client.on('message', msg => {
 
 client.on('message', msg => {
   if (msg.content === 'الرابط') {
-    msg.reply('https://discord.gg/FHJfxkc');
+    msg.reply('https://discord.gg/CksS5DX');
   }
 });
 
@@ -59,28 +59,14 @@ client.on('ready', () => {
 });
          client.on('message', message => {
             if (message.content === '-') {
-              message.channel.send('**#Welcome To Legends City...:tada::tada:**');
+              message.channel.send('**#Welcome To Etolie Server...:tada::tada:**');
               message.channel.sendFile("./photoshop.PNG");
                
 
             }
 });
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-         client.on('message', message => {
-            if (message.content === 'الشعار') {
-              message.channel.send('**العبه ! ᴸᶜ**');
-			  
-			  
-						
-			  message.channel.send('**الديسكورد LC**');
-              message.channel.sendFile("./photoshop.PNG");
-               
 
-            }
-});
 
 
 
@@ -325,7 +311,7 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', '! LD | Visitor'));
+member.addRole(member.guild.roles.find('name', 'ETOLIE'));
 });
 
 
@@ -575,7 +561,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers `);
     console.log(`---------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`LC For Ever`,"http://twitch.tv/y04zgamer")
+  client.user.setGame(`Etolie Server`,"http://twitch.tv/y04zgamer")
    client.user.setStatus("dnd")
 });
 
